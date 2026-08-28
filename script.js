@@ -126,17 +126,29 @@ document.addEventListener('DOMContentLoaded', () => {
   let currentLang = 'pl';
   let currentPath = 'home';
 
-  // --- ROUTING & SYSTEM ADRESÓW URL ---
-  function updateURL(lang, path) {
-    const newPath = `/${lang}/${path}`;
-    window.history.pushState({ lang, path }, '', newPath);
+  function parseHash() {
+    // Odczyt z adresu typu #/pl/roadmap
+    const hash = window.location.hash.replace('#/', '');
+    const parts = hash.split('/');
+    
+    if (parts.length >= 2) {
+      if (['pl', 'en', 'ja'].includes(parts[0])) {
+        currentLang = parts[0];
+      }
+      currentPath = parts[1];
+    } else if (parts.length === 1 && parts[0] !== '') {
+      currentPath = parts[0];
+    }
+  }
+
+  function updateHash() {
+    window.location.hash = `/${currentLang}/${currentPath}`;
   }
 
   function setLanguage(lang) {
     currentLang = lang;
     document.getElementById('langSelect').value = lang;
     
-    // Podmiana tekstu dla elementów z opisanym data-i18n
     document.querySelectorAll('[data-i18n]').forEach(el => {
       const key = el.getAttribute('data-i18n');
       if (translations[lang] && translations[lang][key]) {
@@ -144,7 +156,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    // Skok do sekcji według URL
     if (currentPath !== 'home') {
       const targetElement = document.getElementById(currentPath);
       if (targetElement) {
@@ -153,18 +164,17 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Obsługa klikania w nawigacji
+  // Kliknięcia w menu
   document.querySelectorAll('.nav-link').forEach(link => {
     link.addEventListener('click', (e) => {
       e.preventDefault();
       const path = link.getAttribute('data-path');
       currentPath = path;
 
-      // Zmiana zaznaczenia aktywnego przycisku
       document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
       link.classList.add('active');
 
-      updateURL(currentLang, currentPath);
+      updateHash();
 
       if (path === 'home') {
         window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -177,35 +187,25 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Obsługa wyboru języka ze słownika
+  // Zmiana języka
   document.getElementById('langSelect').addEventListener('change', (e) => {
-    const selectedLang = e.target.value;
-    setLanguage(selectedLang);
-    updateURL(selectedLang, currentPath);
+    currentLang = e.target.value;
+    setLanguage(currentLang);
+    updateHash();
   });
 
-  // Obsługa wstecz/dalej w przeglądarce (popstate)
-  window.addEventListener('popstate', (e) => {
-    if (e.state) {
-      currentPath = e.state.path || 'home';
-      setLanguage(e.state.lang || 'pl');
-    }
+  // Zmiana adresu w hash (#)
+  window.addEventListener('hashchange', () => {
+    parseHash();
+    setLanguage(currentLang);
   });
 
-  // Odczyt domyślnej ścieżki przy starcie (np. przy bezpośrednim otwarciu /en/roadmap)
-  const pathSegments = window.location.pathname.split('/').filter(Boolean);
-  if (pathSegments.length >= 2) {
-    if (['pl', 'en', 'ja'].includes(pathSegments[0])) {
-      currentLang = pathSegments[0];
-    }
-    currentPath = pathSegments[1];
-  }
-
-  // Inicjalizacja języka na start
+  // Start strony
+  parseHash();
   setLanguage(currentLang);
-  updateURL(currentLang, currentPath);
+  updateHash();
 
-  // --- OBSŁUGA MODALA ZAPISÓW ---
+  // --- MODAL ZAPISÓW ---
   const openModalBtn = document.getElementById('openModalBtn');
   const closeModalBtn = document.getElementById('closeModalBtn');
   const signupModal = document.getElementById('signupModal');
