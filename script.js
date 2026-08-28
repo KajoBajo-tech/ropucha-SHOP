@@ -1,4 +1,4 @@
-// Podświetlanie nawigacji podczas przewijania
+// Podświetlanie nawigacji podczas kliknięcia
 document.addEventListener('DOMContentLoaded', () => {
   const navLinks = document.querySelectorAll('nav a');
   

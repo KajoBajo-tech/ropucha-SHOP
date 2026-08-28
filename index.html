@@ -4,16 +4,24 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ropucha SHOP | Roblox Experience</title>
+  
+  <!-- Czcionki Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  
+  <!-- Phosphor Icons (Ikony w pliku Web Components) -->
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
   <header>
     <div class="logo-container">
-      <div class="logo-badge">🐸 ROPUCHA</div>
+      <div class="logo-badge">
+        <i class="ph-bold ph-storefront"></i> ROPUCHA
+      </div>
       <span class="logo-text">SHOP</span>
     </div>
     <nav>
@@ -29,38 +37,57 @@
     
     <!-- HERO SECTION -->
     <section class="hero">
-      <h1>Witaj w Ropucha SHOP! 🛒</h1>
+      <h1>Witaj w Ropucha SHOP! <i class="ph-duotone ph-shopping-cart-simple"></i></h1>
       <p>Najbardziej zakręcona symulacja polskiego osiedlowego sklepiku na Robloxie. Ogarnij kasę, robiąc hot dogi i walcząc z rozrabiakami!</p>
-      <a href="#roadmap" class="btn-main">Zobacz co tworzymy 🚀</a>
+      <a href="#roadmap" class="btn-main">
+        Zobacz co tworzymy <i class="ph-bold ph-rocket-launch"></i>
+      </a>
     </section>
 
     <!-- O GRZE & KLIENTACH -->
     <div class="grid-2" id="o-gra">
       <div class="card">
-        <h3>🛍️ O co tu chodzi?</h3>
+        <h3><i class="ph-bold ph-bag"></i> O co tu chodzi?</h3>
         <p>Zaczynasz pracę w "Ropusze", bo Twój szef spóźnił się do pracy. Wszystko ląduje na Twoich głowach: obsługa kasy, dokładanie towaru i serwowanie legendarnych hot dogów z sosikiem.</p>
       </div>
 
       <div class="card">
-        <h3>🤪 Zakręceni Klienci</h3>
+        <h3><i class="ph-bold ph-users-three"></i> Zakręceni Klienci</h3>
         <p>W sklepie spotkasz niesamowite postacie:</p>
         <ul class="custom-list">
-          <li><b>Sebix / Student</b> – liczy każdy grosz!</li>
-          <li><b>Złodziejaszek</b> – poluje na darmowe energetyki.</li>
-          <li><b>Babcia</b> – potrafi zapłacić 200 zł za jedną gumę!</li>
-          <li><b>Policjant</b> – wpadnie na kontrolę w najmniej oczekiwanym momencie.</li>
+          <li>
+            <i class="ph-bold ph-student"></i>
+            <span><b>Sebix / Student</b> – liczy każdy grosz!</span>
+          </li>
+          <li>
+            <i class="ph-bold ph-mask-happy"></i>
+            <span><b>Złodziejaszek</b> – poluje na darmowe energetyki.</span>
+          </li>
+          <li>
+            <i class="ph-bold ph-coin"></i>
+            <span><b>Babcia</b> – potrafi zapłacić 200 zł za jedną gumę!</span>
+          </li>
+          <li>
+            <i class="ph-bold ph-shield-warning"></i>
+            <span><b>Policjant</b> – wpadnie na kontrolę w najmniej oczekiwanym momencie.</span>
+          </li>
         </ul>
       </div>
     </div>
 
     <!-- ROADMAP / FAZY MVP -->
     <section class="card roadmap-section" id="roadmap">
-      <h2>🗺️ Plan Rozwoju (Wersja MVP)</h2>
+      <h2><i class="ph-bold ph-map-trifold"></i> Plan Rozwoju (Wersja MVP)</h2>
 
       <div class="roadmap-step">
         <div class="step-number">1</div>
         <div>
-          <h4>Podłoga & Półki <span class="badge-status status-wip">W TRAKCIE</span></h4>
+          <h4>
+            Podłoga & Półki 
+            <span class="badge-status status-wip">
+              <i class="ph-bold ph-wrench"></i> W TRAKCIE
+            </span>
+          </h4>
           <p>Budowa sklepu, 5 podstawowych produktów i wygodny system podnoszenia oraz układania towaru.</p>
         </div>
       </div>
@@ -68,7 +95,12 @@
       <div class="roadmap-step">
         <div class="step-number">2</div>
         <div>
-          <h4>Klienci & Kasa Skanująca <span class="badge-status status-plan">PLAN</span></h4>
+          <h4>
+            Klienci & Kasa Skanująca 
+            <span class="badge-status status-plan">
+              <i class="ph-bold ph-clock"></i> PLAN
+            </span>
+          </h4>
           <p>Sztuczna inteligencja klientów (NPC), skanowanie produktów na kasie i wydawanie reszty.</p>
         </div>
       </div>
@@ -76,7 +108,12 @@
       <div class="roadmap-step">
         <div class="step-number">3</div>
         <div>
-          <h4>Strefa Hot-Dogów <span class="badge-status status-plan">PLAN</span></h4>
+          <h4>
+            Strefa Hot-Dogów 
+            <span class="badge-status status-plan">
+              <i class="ph-bold ph-clock"></i> PLAN
+            </span>
+          </h4>
           <p>Minigra: grillowanie parówek, dodawanie sosów i serwowanie ciepłych przekąsek.</p>
         </div>
       </div>
@@ -84,7 +121,12 @@
       <div class="roadmap-step">
         <div class="step-number">4</div>
         <div>
-          <h4>Ulepszenia & Zapis Stanu <span class="badge-status status-plan">PLAN</span></h4>
+          <h4>
+            Ulepszenia & Zapis Stanu 
+            <span class="badge-status status-plan">
+              <i class="ph-bold ph-clock"></i> PLAN
+            </span>
+          </h4>
           <p>Kupowanie szybszych kas, lepszego grilla oraz zapisywanie monet (Save Data).</p>
         </div>
       </div>
@@ -92,12 +134,18 @@
 
     <!-- TIKTOK MOMENTS -->
     <section class="card" id="tiktok">
-      <h3>🎬 TikTok Moments & Akcje</h3>
+      <h3><i class="ph-bold ph-video-camera"></i> TikTok Moments & Akcje</h3>
       <p class="text-muted">Szykujemy całą masę zwariowanych akcji idealnych pod shorty i filmiki:</p>
       <div class="tag-container">
-        <span class="tag">🌭 Klient kupujący 100 hot-dogów</span>
-        <span class="tag">🥤 Rozlana cola & ślizgający się ludzie</span>
-        <span class="tag">👵 Babcia bijąca złodzieja torebką</span>
+        <span class="tag">
+          <i class="ph-bold ph-fire"></i> Klient kupujący 100 hot-dogów
+        </span>
+        <span class="tag">
+          <i class="ph-bold ph-drop"></i> Rozlana cola & ślizgający się ludzie
+        </span>
+        <span class="tag">
+          <i class="ph-bold ph-handbag"></i> Babcia bijąca złodzieja torebką
+        </span>
       </div>
     </section>
 

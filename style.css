@@ -26,6 +26,10 @@ h1, h2, h3, .logo-text {
   font-family: 'Fredoka', cursive;
 }
 
+i {
+  vertical-align: middle;
+}
+
 header {
   background: rgba(30, 41, 59, 0.8);
   backdrop-filter: blur(10px);
@@ -53,6 +57,9 @@ header {
   border-radius: 12px;
   font-size: 1.2rem;
   transform: rotate(-3deg);
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 
 .logo-text {
@@ -111,7 +118,9 @@ nav a:hover, nav a.active {
   padding: 14px 28px;
   border-radius: 12px;
   text-decoration: none;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   transition: transform 0.2s, background-color 0.2s;
 }
 
@@ -138,12 +147,27 @@ nav a:hover, nav a.active {
   color: var(--accent-green);
   margin-bottom: 12px;
   font-size: 1.4rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .custom-list {
-  margin-left: 20px;
-  margin-top: 10px;
+  list-style: none;
+  margin-top: 12px;
+}
+
+.custom-list li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
   color: var(--text-muted);
+}
+
+.custom-list li i {
+  color: var(--accent-green);
+  font-size: 1.2rem;
 }
 
 .roadmap-section {
@@ -153,6 +177,9 @@ nav a:hover, nav a.active {
 .roadmap-section h2 {
   margin-bottom: 25px;
   color: var(--accent-green);
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .roadmap-step {
@@ -188,7 +215,9 @@ nav a:hover, nav a.active {
 }
 
 .badge-status {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
   padding: 4px 10px;
   border-radius: 20px;
   font-size: 0.8rem;
@@ -205,7 +234,7 @@ nav a:hover, nav a.active {
 
 .tag-container {
   display: flex;
-  gap: 15px;
+  gap: 12px;
   flex-wrap: wrap;
   margin-top: 15px;
 }
@@ -215,6 +244,9 @@ nav a:hover, nav a.active {
   padding: 8px 14px;
   border-radius: 8px;
   font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 
 footer {
