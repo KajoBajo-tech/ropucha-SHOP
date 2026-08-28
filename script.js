@@ -192,7 +192,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Odczyt domyślnej ścieżki przy starcie (np. gdy ktoś wklei link /en/roadmap)
+  // Odczyt domyślnej ścieżki przy starcie (np. przy bezpośrednim otwarciu /en/roadmap)
   const pathSegments = window.location.pathname.split('/').filter(Boolean);
   if (pathSegments.length >= 2) {
     if (['pl', 'en', 'ja'].includes(pathSegments[0])) {
@@ -205,7 +205,7 @@ document.addEventListener('DOMContentLoaded', () => {
   setLanguage(currentLang);
   updateURL(currentLang, currentPath);
 
-  // --- OBSŁUGI MODALA ZAPISÓW ---
+  // --- OBSŁUGA MODALA ZAPISÓW ---
   const openModalBtn = document.getElementById('openModalBtn');
   const closeModalBtn = document.getElementById('closeModalBtn');
   const signupModal = document.getElementById('signupModal');
