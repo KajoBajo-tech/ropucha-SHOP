@@ -126,29 +126,19 @@ document.addEventListener('DOMContentLoaded', () => {
   let currentLang = 'pl';
   let currentPath = 'home';
 
-  function parseHash() {
-    // Odczyt z adresu typu #/pl/roadmap
-    const hash = window.location.hash.replace('#/', '');
-    const parts = hash.split('/');
-    
-    if (parts.length >= 2) {
-      if (['pl', 'en', 'ja'].includes(parts[0])) {
-        currentLang = parts[0];
-      }
-      currentPath = parts[1];
-    } else if (parts.length === 1 && parts[0] !== '') {
-      currentPath = parts[0];
+  // --- ROUTING & SYSTEM ADRESÓW URL (HASH ROUTER) ---
+  function updateURL(lang, path) {
+    const newHash = `#/${lang}/${path}`;
+    if (window.location.hash !== newHash) {
+      window.location.hash = newHash;
     }
-  }
-
-  function updateHash() {
-    window.location.hash = `/${currentLang}/${currentPath}`;
   }
 
   function setLanguage(lang) {
     currentLang = lang;
     document.getElementById('langSelect').value = lang;
     
+    // Podmiana tekstu dla elementów z opisanym data-i18n
     document.querySelectorAll('[data-i18n]').forEach(el => {
       const key = el.getAttribute('data-i18n');
       if (translations[lang] && translations[lang][key]) {
@@ -156,83 +146,118 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
+    // Aktualizacja wybranego linku w menu
+    document.querySelectorAll('.nav-link').forEach(l => {
+      if (l.getAttribute('data-path') === currentPath) {
+        l.classList.add('active');
+      } else {
+        l.classList.remove('active');
+      }
+    });
+
+    // Przewijanie do odpowiedniej sekcji
     if (currentPath !== 'home') {
       const targetElement = document.getElementById(currentPath);
       if (targetElement) {
         targetElement.scrollIntoView({ behavior: 'smooth' });
       }
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   }
 
-  // Kliknięcia w menu
+  // Odczyt, weryfikacja i przekierowanie (autofill niepełnego adresu)
+  function parseAndSanitizeHash() {
+    const rawHash = window.location.hash.replace(/^#\/?/, '');
+    const segments = rawHash.split('/').filter(Boolean);
+
+    const validLangs = ['pl', 'en', 'ja'];
+    const validPaths = ['home', 'roadmap', 'tiktok'];
+
+    let lang = segments[0];
+    let path = segments[1];
+
+    // Sprawdzanie i poprawianie języka
+    if (!validLangs.includes(lang)) {
+      if (validPaths.includes(lang)) {
+        path = lang;
+      }
+      lang = 'pl';
+    }
+
+    // Sprawdzanie i poprawianie ścieżki
+    if (!validPaths.includes(path)) {
+      path = 'home';
+    }
+
+    currentLang = lang;
+    currentPath = path;
+
+    setLanguage(currentLang);
+    updateURL(currentLang, currentPath);
+  }
+
+  // Obsługa klikania w nawigacji
   document.querySelectorAll('.nav-link').forEach(link => {
     link.addEventListener('click', (e) => {
       e.preventDefault();
       const path = link.getAttribute('data-path');
       currentPath = path;
-
-      document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
-      link.classList.add('active');
-
-      updateHash();
-
-      if (path === 'home') {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      } else {
-        const targetElement = document.getElementById(path);
-        if (targetElement) {
-          targetElement.scrollIntoView({ behavior: 'smooth' });
-        }
-      }
+      updateURL(currentLang, currentPath);
+      setLanguage(currentLang);
     });
   });
 
-  // Zmiana języka
+  // Obsługa zmiany w przełączniku języka
   document.getElementById('langSelect').addEventListener('change', (e) => {
-    currentLang = e.target.value;
-    setLanguage(currentLang);
-    updateHash();
-  });
-
-  // Zmiana adresu w hash (#)
-  window.addEventListener('hashchange', () => {
-    parseHash();
+    const selectedLang = e.target.value;
+    currentLang = selectedLang;
+    updateURL(currentLang, currentPath);
     setLanguage(currentLang);
   });
 
-  // Start strony
-  parseHash();
-  setLanguage(currentLang);
-  updateHash();
+  // Reakcja na ręczną zmianę adresu URL w przeglądarce
+  window.addEventListener('hashchange', parseAndSanitizeHash);
 
-  // --- MODAL ZAPISÓW ---
+  // Inicjalizacja przy starcie
+  parseAndSanitizeHash();
+
+  // --- OBSŁUGA MODALA ZAPISÓW ---
   const openModalBtn = document.getElementById('openModalBtn');
   const closeModalBtn = document.getElementById('closeModalBtn');
   const signupModal = document.getElementById('signupModal');
   const signupForm = document.getElementById('signupForm');
   const successMessage = document.getElementById('successMessage');
 
-  openModalBtn.addEventListener('click', () => signupModal.classList.add('active'));
-  closeModalBtn.addEventListener('click', () => signupModal.classList.remove('active'));
+  if (openModalBtn) {
+    openModalBtn.addEventListener('click', () => signupModal.classList.add('active'));
+  }
+  if (closeModalBtn) {
+    closeModalBtn.addEventListener('click', () => signupModal.classList.remove('active'));
+  }
   
-  signupModal.addEventListener('click', (e) => {
-    if (e.target === signupModal) signupModal.classList.remove('active');
-  });
+  if (signupModal) {
+    signupModal.addEventListener('click', (e) => {
+      if (e.target === signupModal) signupModal.classList.remove('active');
+    });
+  }
 
-  signupForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    signupForm.style.display = 'none';
-    successMessage.style.display = 'block';
+  if (signupForm) {
+    signupForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      signupForm.style.display = 'none';
+      successMessage.style.display = 'block';
 
-    setTimeout(() => {
-      signupModal.classList.remove('active');
       setTimeout(() => {
-        signupForm.style.display = 'block';
-        successMessage.style.display = 'none';
-        signupForm.reset();
-      }, 400);
-    }, 3000);
-  });
+        signupModal.classList.remove('active');
+        setTimeout(() => {
+          signupForm.style.display = 'block';
+          successMessage.style.display = 'none';
+          signupForm.reset();
+        }, 400);
+      }, 3000);
+    });
+  }
 
   // --- ANIMACJE REVEAL ---
   const reveals = document.querySelectorAll('.reveal');
