@@ -319,3 +319,111 @@ h1, h2, h3, .logo {
   opacity: 1;
   transform: translateY(0);
 }
+
+/* --- TIMELINE SECTION --- */
+.timeline-box {
+  background: var(--bg-card);
+  border: 1px solid #2d2d35;
+  border-radius: var(--radius);
+  padding: 30px;
+}
+
+.timeline-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.btn-admin-icon {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.btn-admin-icon:hover {
+  color: var(--primary);
+}
+
+.timeline-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Kreska łącząca kółka */
+.timeline-wrapper::before {
+  content: '';
+  position: absolute;
+  top: 15px;
+  bottom: 15px;
+  left: 19px;
+  width: 3px;
+  background: #33333e;
+  z-index: 1;
+}
+
+.timeline-item {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  z-index: 2;
+}
+
+/* Kółko z numerem */
+.timeline-node {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--primary);
+  color: #fff;
+  font-weight: 700;
+  font-family: 'Fredoka', sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid var(--bg-card);
+  flex-shrink: 0;
+}
+
+.timeline-content {
+  background: var(--bg-card-alt);
+  padding: 16px 20px;
+  border-radius: var(--radius);
+  flex-grow: 1;
+}
+
+.timeline-content h4 {
+  font-size: 1.1rem;
+  color: var(--text-main);
+  margin-bottom: 4px;
+}
+
+.timeline-content p {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+/* Panel Admina */
+.admin-panel {
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px dashed #3d3d4a;
+}
+
+.admin-panel textarea {
+  width: 100%;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #3d3d4a;
+  background: var(--bg-dark);
+  color: #fff;
+  font-family: inherit;
+  margin-top: 8px;
+  min-height: 80px;
+}

@@ -13,8 +13,7 @@
   <!-- Phosphor Icons -->
   <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
-  <!-- CSS bezpośrednio z tego samego folderu public -->
-  <link rel="stylesheet" href="style.css?v=10">
+  <link rel="stylesheet" href="style.css?v=11">
 </head>
 <body>
 
@@ -28,7 +27,7 @@
       <ul class="nav-links">
         <li><a href="#/pl/home" class="nav-link active" data-path="home" data-i18n="nav_home">O grze</a></li>
         <li><a href="#/pl/roadmap" class="nav-link" data-path="roadmap" data-i18n="nav_roadmap">Plan prac (MVP)</a></li>
-        <li><a href="#/pl/tiktok" class="nav-link" data-path="tiktok" data-i18n="nav_tiktok">Wiral & Klimat</a></li>
+        <li><a href="#/pl/timeline" class="nav-link" data-path="timeline" data-i18n="nav_timeline">Postępy Projektu</a></li>
       </ul>
 
       <div class="lang-selector">
@@ -112,16 +111,58 @@
     </div>
   </section>
 
-  <!-- TIKTOK / WIRAL -->
-  <section id="tiktok" class="section reveal">
+  <!-- OSIA CZASU / ETAPY DEWELOPERSKIE -->
+  <section id="timeline" class="section reveal">
     <div class="container">
-      <h2 data-i18n="tiktok_title"><i class="ph-bold ph-video-camera"></i> TikTok Moments & Akcje</h2>
-      <p data-i18n="tiktok_desc">Szykujemy całą masę zwariowanych akcji idealnych pod shorty i filmiki:</p>
+      <div class="timeline-box">
+        <div class="timeline-header">
+          <h2><i class="ph-bold ph-git-commit"></i> Etapy Prac nad Projektem</h2>
+          <button id="adminLoginBtn" class="btn-admin-icon" title="Panel Administratora">
+            <i class="ph-bold ph-lock-key"></i>
+          </button>
+        </div>
 
-      <div class="tags-wrapper">
-        <span class="tag" data-i18n="tag_1"><i class="ph-bold ph-fire"></i> Klient kupujący 100 hot-dogów</span>
-        <span class="tag" data-i18n="tag_2"><i class="ph-bold ph-drop"></i> Rozlana cola & ślizgający się ludzie</span>
-        <span class="tag" data-i18n="tag_3"><i class="ph-bold ph-handbag"></i> Babcia bijąca złodzieja torebką</span>
+        <!-- Oś z kółkami i kreską -->
+        <div class="timeline-wrapper" id="timelineList">
+          <!-- Krok 1 -->
+          <div class="timeline-item">
+            <div class="timeline-node">1</div>
+            <div class="timeline-content">
+              <h4>Projektowanie Mapy & Sklepu</h4>
+              <p>Stworzenie podstawowych modeli, układu półek oraz oświetlenia wnętrza Ropuchy.</p>
+            </div>
+          </div>
+
+          <!-- Krok 2 -->
+          <div class="timeline-item">
+            <div class="timeline-node">2</div>
+            <div class="timeline-content">
+              <h4>System Towarów i Skanowania</h4>
+              <p>Programowanie skryptów Luau odpowiedzialnych za podnoszenie produktów i czytnik kody na kasie.</p>
+            </div>
+          </div>
+
+          <!-- Krok 3 -->
+          <div class="timeline-item">
+            <div class="timeline-node">3</div>
+            <div class="timeline-content">
+              <h4>Logika NPC i Klienci</h4>
+              <p>Dodanie sztucznej inteligencji klientów, którzy wchodzą do sklepu, wybierają towary i płacą.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Formularz dodawania etapu (Widoczny tylko dla Zalogowanego Admina) -->
+        <div id="adminPanel" class="admin-panel" style="display: none;">
+          <h3><i class="ph-bold ph-plus-circle"></i> Dodaj Nowy Etap (Tylko Admin)</h3>
+          <div class="form-group">
+            <input type="text" id="newStepTitle" placeholder="Tytuł etapu">
+          </div>
+          <div class="form-group">
+            <textarea id="newStepDesc" placeholder="Opis wykonanych prac..."></textarea>
+          </div>
+          <button id="addStepBtn" class="btn btn-primary">Dodaj Etap do Osi</button>
+        </div>
       </div>
     </div>
   </section>
@@ -153,7 +194,6 @@
     </div>
   </div>
 
-  <!-- JS bezpośrednio z tego samego folderu public -->
-  <script src="script.js?v=10"></script>
+  <script src="script.js?v=11"></script>
 </body>
 </html>
