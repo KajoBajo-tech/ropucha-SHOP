@@ -3,197 +3,157 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ropucha SHOP | Roblox Experience</title>
-  
+  <title>Ropucha SHOP - Roblox Game</title>
+
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Inter:wght@400;600;800&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
-  
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <!-- Phosphor Icons -->
   <script src="https://unpkg.com/@phosphor-icons/web"></script>
-  
-  <!-- Bezsolutna ścieżka z ukośnikiem z przodu (naprawia brak UI przy podstronach) -->
-  <link rel="stylesheet" href="/style.css">
+
+  <!-- Główny arkusz styli CSS -->
+  <link rel="stylesheet" href="css/style.css?v=2">
 </head>
 <body>
 
-  <header>
-    <div class="logo-container">
-      <div class="logo-badge">
-        <i class="ph-bold ph-storefront"></i> ROPUCHA
-      </div>
-      <span class="logo-text">SHOP</span>
-    </div>
+  <!-- NAWIGACJA -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="#/pl/home" class="logo">
+        <i class="ph-bold ph-storefront"></i> Ropucha <span>SHOP</span>
+      </a>
 
-    <!-- Nawigacja oparta na routingu -->
-    <nav>
-      <ul>
-        <li><a href="/home" class="nav-link" data-path="home" data-i18n="nav_home">O grze</a></li>
-        <li><a href="/roadmap" class="nav-link" data-path="roadmap" data-i18n="nav_roadmap">Plan prac (MVP)</a></li>
-        <li><a href="/tiktok" class="nav-link" data-path="tiktok" data-i18n="nav_tiktok">Wiral & Klimat</a></li>
+      <ul class="nav-links">
+        <li><a href="#/pl/home" class="nav-link active" data-path="home" data-i18n="nav_home">O grze</a></li>
+        <li><a href="#/pl/roadmap" class="nav-link" data-path="roadmap" data-i18n="nav_roadmap">Plan prac (MVP)</a></li>
+        <li><a href="#/pl/tiktok" class="nav-link" data-path="tiktok" data-i18n="nav_tiktok">Wiral & Klimat</a></li>
       </ul>
-    </nav>
 
-    <!-- Przełącznik Języka -->
-    <div class="lang-selector">
-      <i class="ph-bold ph-globe"></i>
-      <select id="langSelect">
-        <option value="pl">PL 🇵🇱</option>
-        <option value="en">EN 🇬🇧</option>
-        <option value="ja">JA 🇯🇵</option>
-      </select>
+      <div class="lang-selector">
+        <i class="ph-bold ph-globe"></i>
+        <select id="langSelect">
+          <option value="pl">Polski (PL)</option>
+          <option value="en">English (EN)</option>
+          <option value="ja">日本語 (JA)</option>
+        </select>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO SECTION -->
+  <header id="home" class="hero">
+    <div class="hero-content reveal">
+      <h1 data-i18n="hero_title">
+        Witaj w Ropucha SHOP! <i class="ph-duotone ph-shopping-cart-simple hero-icon"></i>
+      </h1>
+      <p data-i18n="hero_desc">
+        Najbardziej zakręcona symulacja polskiego osiedlowego sklepiku na Robloxie. Ogarnij kasę, robiąc hot dogi i walcząc z rozrabiakami!
+      </p>
+      <div class="hero-buttons">
+        <button id="openModalBtn" class="btn btn-primary" data-i18n="btn_signup">ZAPISZ SIĘ NA BETA TESTY!</button>
+        <a href="#/pl/roadmap" class="btn btn-secondary" data-i18n="btn_roadmap">Plan gry</a>
+      </div>
     </div>
   </header>
 
-  <main class="container">
-    
-    <!-- HERO SECTION -->
-    <section class="hero reveal">
-      <h1 data-i18n="hero_title">Witaj w Ropucha SHOP! <i class="ph-duotone ph-shopping-cart-simple hero-icon"></i></h1>
-      <p data-i18n="hero_desc">Najbardziej zakręcona symulacja polskiego osiedlowego sklepiku na Robloxie. Ogarnij kasę, robiąc hot dogi i walcząc z rozrabiakami!</p>
-      
-      <div class="hero-buttons">
-        <button id="openModalBtn" class="btn-main btn-signup">
-          <span data-i18n="btn_signup">ZAPISZ SIĘ NA BETA TESTY!</span> <i class="ph-bold ph-bell-ringing btn-icon"></i>
-        </button>
-        <a href="/roadmap" class="btn-secondary nav-link" data-path="roadmap">
-          <span data-i18n="btn_roadmap">Plan gry</span> <i class="ph-bold ph-arrow-down"></i>
-        </a>
-      </div>
-    </section>
+  <!-- OPIS GRY -->
+  <section class="section reveal">
+    <div class="container">
+      <h2 data-i18n="about_title"><i class="ph-bold ph-bag"></i> O co tu chodzi?</h2>
+      <p data-i18n="about_desc">
+        Zaczynasz pracę w "Ropusze", bo Twój szef spóźnił się do pracy. Wszystko ląduje na Twoich głowach: obsługa kasa, dokładanie towaru i serwowanie legendarnych hot dogów z sosikiem.
+      </p>
 
-    <!-- O GRZE & KLIENTACH -->
-    <div class="grid-2" id="o-gra">
-      <div class="card reveal">
-        <h3 data-i18n="about_title"><i class="ph-bold ph-bag"></i> O co tu chodzi?</h3>
-        <p data-i18n="about_desc">Zaczynasz pracę w "Ropusze", bo Twój szef spóźnił się do pracy. Wszystko ląduje na Twoich głowach: obsługa kasy, dokładanie towaru i serwowanie legendarnych hot dogów z sosikiem.</p>
-      </div>
-
-      <div class="card reveal">
+      <div class="customers-box">
         <h3 data-i18n="customers_title"><i class="ph-bold ph-users-three"></i> Zakręceni Klienci</h3>
         <p data-i18n="customers_subtitle">W sklepie spotkasz niesamowite postacie:</p>
-        <ul class="custom-list">
-          <li>
-            <i class="ph-bold ph-student"></i>
-            <span data-i18n="cust_1"><b>Sebix / Student</b> – liczy każdy grosz!</span>
-          </li>
-          <li>
-            <i class="ph-bold ph-mask-happy"></i>
-            <span data-i18n="cust_2"><b>Złodziejaszek</b> – poluje na darmowe energetyki.</span>
-          </li>
-          <li>
-            <i class="ph-bold ph-coin"></i>
-            <span data-i18n="cust_3"><b>Babcia</b> – potrafi zapłacić 200 zł za jedną gumę!</span>
-          </li>
-          <li>
-            <i class="ph-bold ph-shield-warning"></i>
-            <span data-i18n="cust_4"><b>Policjant</b> – wpadnie na kontrolę w najmniej oczekiwanym momencie.</span>
-          </li>
+        <ul>
+          <li data-i18n="cust_1"><b>Sebix / Student</b> – liczy każdy grosz!</li>
+          <li data-i18n="cust_2"><b>Złodziejaszek</b> – poluje na darmowe energetyki.</li>
+          <li data-i18n="cust_3"><b>Babcia</b> – potrafi zapłacić 200 zł za jedną gumę!</li>
+          <li data-i18n="cust_4"><b>Policjant</b> – wpadnie na kontrolę w najmniej oczekiwanym momencie.</li>
         </ul>
       </div>
     </div>
+  </section>
 
-    <!-- ROADMAP / FAZY MVP -->
-    <section class="card roadmap-section reveal" id="roadmap">
+  <!-- ROADMAP (PLAN PRAC) -->
+  <section id="roadmap" class="section section-alt reveal">
+    <div class="container">
       <h2 data-i18n="roadmap_title"><i class="ph-bold ph-map-trifold"></i> Plan Rozwoju (Wersja MVP)</h2>
-
-      <div class="roadmap-step">
-        <div class="step-number">1</div>
-        <div>
-          <h4>
-            <span data-i18n="step1_title">Podłoga & Półki</span>
-            <span class="badge-status status-wip" data-i18n="status_wip"><i class="ph-bold ph-wrench"></i> W TRAKCIE</span>
-          </h4>
+      
+      <div class="roadmap-grid">
+        <div class="card">
+          <span class="badge badge-wip" data-i18n="status_wip"><i class="ph-bold ph-wrench"></i> W TRAKCIE</span>
+          <h3 data-i18n="step1_title">Podłoga & Półki</h3>
           <p data-i18n="step1_desc">Budowa sklepu, 5 podstawowych produktów i wygodny system podnoszenia oraz układania towaru.</p>
         </div>
-      </div>
 
-      <div class="roadmap-step">
-        <div class="step-number">2</div>
-        <div>
-          <h4>
-            <span data-i18n="step2_title">Klienci & Kasa Skanująca</span>
-            <span class="badge-status status-plan" data-i18n="status_plan"><i class="ph-bold ph-clock"></i> PLAN</span>
-          </h4>
+        <div class="card">
+          <span class="badge badge-wip" data-i18n="status_wip"><i class="ph-bold ph-wrench"></i> W TRAKCIE</span>
+          <h3 data-i18n="step2_title">Klienci & Kasa Skanująca</h3>
           <p data-i18n="step2_desc">Sztuczna inteligencja klientów (NPC), skanowanie produktów na kasie i wydawanie reszty.</p>
         </div>
-      </div>
 
-      <div class="roadmap-step">
-        <div class="step-number">3</div>
-        <div>
-          <h4>
-            <span data-i18n="step3_title">Strefa Hot-Dogów</span>
-            <span class="badge-status status-plan" data-i18n="status_plan"><i class="ph-bold ph-clock"></i> PLAN</span>
-          </h4>
+        <div class="card">
+          <span class="badge badge-plan" data-i18n="status_plan"><i class="ph-bold ph-clock"></i> PLAN</span>
+          <h3 data-i18n="step3_title">Strefa Hot-Dogów</h3>
           <p data-i18n="step3_desc">Minigra: grillowanie parówek, dodawanie sosów i serwowanie ciepłych przekąsek.</p>
         </div>
-      </div>
 
-      <div class="roadmap-step">
-        <div class="step-number">4</div>
-        <div>
-          <h4>
-            <span data-i18n="step4_title">Ulepszenia & Zapis Stanu</span>
-            <span class="badge-status status-plan" data-i18n="status_plan"><i class="ph-bold ph-clock"></i> PLAN</span>
-          </h4>
+        <div class="card">
+          <span class="badge badge-plan" data-i18n="status_plan"><i class="ph-bold ph-clock"></i> PLAN</span>
+          <h3 data-i18n="step4_title">Ulepszenia & Zapis Stanu</h3>
           <p data-i18n="step4_desc">Kupowanie szybszych kas, lepszego grilla oraz zapisywanie monet (Save Data).</p>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- TIKTOK MOMENTS -->
-    <section class="card reveal" id="tiktok">
-      <h3 data-i18n="tiktok_title"><i class="ph-bold ph-video-camera"></i> TikTok Moments & Akcje</h3>
-      <p class="text-muted" data-i18n="tiktok_desc">Szykujemy całą masę zwariowanych akcji idealnych pod shorty i filmiki:</p>
-      <div class="tag-container">
+  <!-- TIKTOK / WIRAL -->
+  <section id="tiktok" class="section reveal">
+    <div class="container">
+      <h2 data-i18n="tiktok_title"><i class="ph-bold ph-video-camera"></i> TikTok Moments & Akcje</h2>
+      <p data-i18n="tiktok_desc">Szykujemy całą masę zwariowanych akcji idealnych pod shorty i filmiki:</p>
+
+      <div class="tags-wrapper">
         <span class="tag" data-i18n="tag_1"><i class="ph-bold ph-fire"></i> Klient kupujący 100 hot-dogów</span>
         <span class="tag" data-i18n="tag_2"><i class="ph-bold ph-drop"></i> Rozlana cola & ślizgający się ludzie</span>
         <span class="tag" data-i18n="tag_3"><i class="ph-bold ph-handbag"></i> Babcia bijąca złodzieja torebką</span>
       </div>
-    </section>
+    </div>
+  </section>
 
-  </main>
-
-  <!-- MODAL / OKIENKO ZAPISÓW -->
-  <div id="signupModal" class="modal-backdrop">
+  <!-- MODAL ZAPISÓW -->
+  <div id="signupModal" class="modal">
     <div class="modal-content">
-      <button id="closeModalBtn" class="modal-close"><i class="ph-bold ph-x"></i></button>
-      
-      <div class="modal-header">
-        <i class="ph-bold ph-game-controller modal-icon"></i>
-        <h2 data-i18n="modal_title">Zapisz się do Beta Testów!</h2>
-        <p data-i18n="modal_desc">Bądź pierwszą osobą, która wejdzie do gry Ropucha SHOP przed premierą!</p>
-      </div>
+      <button id="closeModalBtn" class="close-btn">&times;</button>
+      <h3 data-i18n="modal_title">Zapisz się do Beta Testów!</h3>
+      <p data-i18n="modal_desc">Bądź pierwszą osobą, która wejdzie do gry Ropucha SHOP przed premierą!</p>
 
       <form id="signupForm">
         <div class="form-group">
           <label for="robloxNick" data-i18n="form_nick_label">Nick na Robloxie</label>
-          <input type="text" id="robloxNick" placeholder="np. Player123" required>
+          <input type="text" id="robloxNick" required placeholder="np. Player123">
         </div>
-        
         <div class="form-group">
-          <label for="userEmail" data-i18n="form_email_label">Adres E-mail (opcjonalnie)</label>
-          <input type="email" id="userEmail" placeholder="twoj@email.com">
+          <label for="email" data-i18n="form_email_label">Adres E-mail (opcjonalnie)</label>
+          <input type="email" id="email" placeholder="twój@email.com">
         </div>
-
-        <button type="submit" class="btn-main btn-full">
-          <span data-i18n="form_btn">ZAPISZ MNIE!</span> <i class="ph-bold ph-check-circle"></i>
-        </button>
+        <button type="submit" class="btn btn-primary btn-full" data-i18n="form_btn">ZAPISZ MNIE!</button>
       </form>
 
       <div id="successMessage" class="success-message" style="display: none;">
-        <i class="ph-bold ph-sparkle"></i>
-        <h3 data-i18n="success_title">Jesteś na liście!</h3>
+        <i class="ph-bold ph-check-circle success-icon"></i>
+        <h4 data-i18n="success_title">Jesteś na liście!</h4>
         <p data-i18n="success_desc">Dzięki za zgłoszenie! Poinformujemy Cię o wystartowaniu testów.</p>
       </div>
     </div>
   </div>
 
-  <footer>
-    <p>© 2026 Ropucha SHOP Game Dev.</p>
-  </footer>
-
-  <!-- Bezpośrednia ścieżka z ukośnikiem -->
-  <script src="/script.js"></script>
+  <!-- Główny skrypt JavaScript -->
+  <script src="js/script.js?v=2"></script>
 </body>
 </html>
