@@ -1,5 +1,1 @@
-git add .
-
-git commit -m "version 1.5 (add langage and /pl/home)"
-
-git push origin main
+git add . && git commit -m "version 1.7 | dodano listę zadań" && git push origin main
