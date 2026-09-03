@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ropucha SHOP - Roadmap</title>
+  
+  <!-- Google Fonts & Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  
+  <!-- Styles -->
+  <link rel="stylesheet" href="roadmap.css">
+  
+  <!-- Firebase SDK v9+ (Modular Web JS) -->
+  <script type="module" src="roadmap.js"></script>
+</head>
+<body>
+
+  <section class="roadmap-section">
+    <!-- HEDER SYSTEMU ROADMAPY -->
+    <div class="roadmap-header">
+      <div class="roadmap-title-grp">
+        <h2><i class="ph-bold ph-map-trifold"></i> Plan Rozwoju & Postępy Prac</h2>
+        <p>Śledź na żywo nad czym pracujemy w Ropucha SHOP!</p>
+      </div>
+
+      <!-- PANEL LOGOWANIA ZESPOŁU -->
+      <div class="auth-box">
+        <button id="authBtn" class="btn-auth">
+          <i class="ph-bold ph-google-logo"></i> <span id="authBtnText">Logowanie zespołu</span>
+        </button>
+        <div id="userInfo" class="user-info hidden">
+          <span id="userEmail"></span>
+          <span id="adminBadge" class="badge-admin">ADMIN</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- NARZĘDZIA: WYSZUKIWARKA & FILTRY -->
+    <div class="roadmap-controls">
+      <div class="search-box">
+        <i class="ph-bold ph-magnifying-glass"></i>
+        <input type="text" id="searchInput" placeholder="Szukaj systemu lub zadania...">
+      </div>
+      
+      <div class="filter-buttons">
+        <button class="filter-btn active" data-filter="all">Wszystkie</button>
+        <button class="filter-btn" data-filter="completed">Ukończone 🟢</button>
+        <button class="filter-btn" data-filter="progress">W trakcie 🟡</button>
+        <button class="filter-btn" data-filter="planned">Planowane ⚪</button>
+      </div>
+    </div>
+
+    <!-- PRZYCISK DODAWANIA MODUŁU (TYLKO DLA ADMINA) -->
+    <div id="adminActionBox" class="admin-action-box hidden">
+      <button id="addModuleBtn" class="btn-add-module">
+        <i class="ph-bold ph-plus-circle"></i> Dodaj nowy moduł
+      </button>
+    </div>
+
+    <!-- KONTENER NA MODUŁY -->
+    <div id="modulesContainer" class="modules-container">
+      <!-- Generowane dynamicznie przez JS -->
+    </div>
+
+    <!-- PRZYCISK POKAŻ WIĘCEJ -->
+    <div class="load-more-box">
+      <button id="loadMoreBtn" class="btn-load-more hidden">
+        Pokaż więcej modułów (<span id="hiddenCount">0</span>)
+      </button>
+    </div>
+  </section>
+
+</body>
+</html>
