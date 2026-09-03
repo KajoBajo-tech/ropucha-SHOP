@@ -3,74 +3,41 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ropucha SHOP - Roadmap</title>
-  
-  <!-- Google Fonts & Icons -->
-  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <title>Ropucha SHOP - Szczegółowa Roadmapa</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <!-- Phosphor Icons -->
   <script src="https://unpkg.com/@phosphor-icons/web"></script>
-  
-  <!-- Styles -->
-  <link rel="stylesheet" href="roadmap.css">
-  
-  <!-- Firebase SDK v9+ (Modular Web JS) -->
-  <script type="module" src="roadmap.js"></script>
+
+  <!-- Styl CSS z folderu script -->
+  <link rel="stylesheet" href="script/style.css?v=6">
+  <link rel="stylesheet" href="script/roadmap.css?v=6">
 </head>
 <body>
 
-  <section class="roadmap-section">
-    <!-- HEDER SYSTEMU ROADMAPY -->
-    <div class="roadmap-header">
-      <div class="roadmap-title-grp">
-        <h2><i class="ph-bold ph-map-trifold"></i> Plan Rozwoju & Postępy Prac</h2>
-        <p>Śledź na żywo nad czym pracujemy w Ropucha SHOP!</p>
-      </div>
-
-      <!-- PANEL LOGOWANIA ZESPOŁU -->
-      <div class="auth-box">
-        <button id="authBtn" class="btn-auth">
-          <i class="ph-bold ph-google-logo"></i> <span id="authBtnText">Logowanie zespołu</span>
-        </button>
-        <div id="userInfo" class="user-info hidden">
-          <span id="userEmail"></span>
-          <span id="adminBadge" class="badge-admin">ADMIN</span>
-        </div>
-      </div>
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html#/pl/home" class="logo">
+        <i class="ph-bold ph-storefront"></i> Ropucha <span>SHOP</span>
+      </a>
+      <a href="index.html#/pl/home" class="btn btn-secondary">← Powrót do strony głównej</a>
     </div>
+  </nav>
 
-    <!-- NARZĘDZIA: WYSZUKIWARKA & FILTRY -->
-    <div class="roadmap-controls">
-      <div class="search-box">
-        <i class="ph-bold ph-magnifying-glass"></i>
-        <input type="text" id="searchInput" placeholder="Szukaj systemu lub zadania...">
-      </div>
-      
-      <div class="filter-buttons">
-        <button class="filter-btn active" data-filter="all">Wszystkie</button>
-        <button class="filter-btn" data-filter="completed">Ukończone 🟢</button>
-        <button class="filter-btn" data-filter="progress">W trakcie 🟡</button>
-        <button class="filter-btn" data-filter="planned">Planowane ⚪</button>
-      </div>
+  <main class="container section">
+    <h1>Pełna Roadmapa Projektu</h1>
+    <p>Śledź na bieżąco postępy w pracach nad grą Ropucha SHOP!</p>
+
+    <div id="roadmapContent" class="roadmap-full-list">
+      <!-- Zawartość generowana dynamicznie z skryptu JS -->
     </div>
+  </main>
 
-    <!-- PRZYCISK DODAWANIA MODUŁU (TYLKO DLA ADMINA) -->
-    <div id="adminActionBox" class="admin-action-box hidden">
-      <button id="addModuleBtn" class="btn-add-module">
-        <i class="ph-bold ph-plus-circle"></i> Dodaj nowy moduł
-      </button>
-    </div>
-
-    <!-- KONTENER NA MODUŁY -->
-    <div id="modulesContainer" class="modules-container">
-      <!-- Generowane dynamicznie przez JS -->
-    </div>
-
-    <!-- PRZYCISK POKAŻ WIĘCEJ -->
-    <div class="load-more-box">
-      <button id="loadMoreBtn" class="btn-load-more hidden">
-        Pokaż więcej modułów (<span id="hiddenCount">0</span>)
-      </button>
-    </div>
-  </section>
-
+  <!-- Skrypt JS z folderu script -->
+  <script src="script/roadmap.js?v=6"></script>
 </body>
 </html>

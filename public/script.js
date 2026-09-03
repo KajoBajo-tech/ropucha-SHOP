@@ -126,7 +126,6 @@ document.addEventListener('DOMContentLoaded', () => {
   let currentLang = 'pl';
   let currentPath = 'home';
 
-  // --- ROUTING & SYSTEM ADRESÓW URL (HASH ROUTER) ---
   function updateURL(lang, path) {
     const newHash = `#/${lang}/${path}`;
     if (window.location.hash !== newHash) {
@@ -136,9 +135,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function setLanguage(lang) {
     currentLang = lang;
-    document.getElementById('langSelect').value = lang;
+    const langSelect = document.getElementById('langSelect');
+    if (langSelect) langSelect.value = lang;
     
-    // Podmiana tekstu dla elementów z opisanym data-i18n
     document.querySelectorAll('[data-i18n]').forEach(el => {
       const key = el.getAttribute('data-i18n');
       if (translations[lang] && translations[lang][key]) {
@@ -146,7 +145,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    // Aktualizacja wybranego linku w menu
     document.querySelectorAll('.nav-link').forEach(l => {
       if (l.getAttribute('data-path') === currentPath) {
         l.classList.add('active');
@@ -155,7 +153,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    // Przewijanie do odpowiedniej sekcji
     if (currentPath !== 'home') {
       const targetElement = document.getElementById(currentPath);
       if (targetElement) {
@@ -166,7 +163,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Odczyt, weryfikacja i przekierowanie (autofill niepełnego adresu)
   function parseAndSanitizeHash() {
     const rawHash = window.location.hash.replace(/^#\/?/, '');
     const segments = rawHash.split('/').filter(Boolean);
@@ -177,7 +173,6 @@ document.addEventListener('DOMContentLoaded', () => {
     let lang = segments[0];
     let path = segments[1];
 
-    // Sprawdzanie i poprawianie języka
     if (!validLangs.includes(lang)) {
       if (validPaths.includes(lang)) {
         path = lang;
@@ -185,7 +180,6 @@ document.addEventListener('DOMContentLoaded', () => {
       lang = 'pl';
     }
 
-    // Sprawdzanie i poprawianie ścieżki
     if (!validPaths.includes(path)) {
       path = 'home';
     }
@@ -197,7 +191,6 @@ document.addEventListener('DOMContentLoaded', () => {
     updateURL(currentLang, currentPath);
   }
 
-  // Obsługa klikania w nawigacji
   document.querySelectorAll('.nav-link').forEach(link => {
     link.addEventListener('click', (e) => {
       e.preventDefault();
@@ -208,21 +201,20 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Obsługa zmiany w przełączniku języka
-  document.getElementById('langSelect').addEventListener('change', (e) => {
-    const selectedLang = e.target.value;
-    currentLang = selectedLang;
-    updateURL(currentLang, currentPath);
-    setLanguage(currentLang);
-  });
+  const langSelect = document.getElementById('langSelect');
+  if (langSelect) {
+    langSelect.addEventListener('change', (e) => {
+      const selectedLang = e.target.value;
+      currentLang = selectedLang;
+      updateURL(currentLang, currentPath);
+      setLanguage(currentLang);
+    });
+  }
 
-  // Reakcja na ręczną zmianę adresu URL w przeglądarce
   window.addEventListener('hashchange', parseAndSanitizeHash);
-
-  // Inicjalizacja przy starcie
   parseAndSanitizeHash();
 
-  // --- OBSŁUGA MODALA ZAPISÓW ---
+  // --- MODAL ---
   const openModalBtn = document.getElementById('openModalBtn');
   const closeModalBtn = document.getElementById('closeModalBtn');
   const signupModal = document.getElementById('signupModal');
@@ -246,20 +238,20 @@ document.addEventListener('DOMContentLoaded', () => {
     signupForm.addEventListener('submit', (e) => {
       e.preventDefault();
       signupForm.style.display = 'none';
-      successMessage.style.display = 'block';
+      if (successMessage) successMessage.style.display = 'block';
 
       setTimeout(() => {
-        signupModal.classList.remove('active');
+        if (signupModal) signupModal.classList.remove('active');
         setTimeout(() => {
           signupForm.style.display = 'block';
-          successMessage.style.display = 'none';
+          if (successMessage) successMessage.style.display = 'none';
           signupForm.reset();
         }, 400);
       }, 3000);
     });
   }
 
-  // --- ANIMACJE REVEAL ---
+  // --- REVEAL ANIMACJE ---
   const reveals = document.querySelectorAll('.reveal');
   const revealObserver = new IntersectionObserver((entries, observer) => {
     entries.forEach(entry => {

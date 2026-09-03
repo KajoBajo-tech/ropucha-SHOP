@@ -1,1 +1,3 @@
 git add . && git commit -m "version 1.7 | dodano listę zadań" && git push origin main
+
+firebase deploy
